@@ -1,5 +1,5 @@
 # ChromAn
-Toolbox for anlysis of chromatin data.
+Toolbox for anlysis of time-series chromatin data.
 
 Important! 
 Always run your code from master-folder ("ChromAn"). 
