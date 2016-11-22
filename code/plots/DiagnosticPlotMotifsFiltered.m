@@ -53,7 +53,7 @@ function DiagnosticPlotMotifsFiltered( MotifNames, timepoints, data, CellLineNam
     
     if ~isempty(varargin)
         fname = varargin{1};
-        size1 = 20;
+        size1 = 30;
         PDFprint(sprintf('%s_%s', fname, figname),  fig, size1, size1);
     end
 end
