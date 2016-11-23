@@ -36,6 +36,7 @@ function DiagnosticPlotNormalized( ProteinNames, timepoints, data, mdata, sdata,
         if isempty(data)
             ylim([min(min(mdata)) max(max(mdata))])
         end
+        axis square
         
         set(get(gca,'xlabel'),'FontSize', FSize);
         set(get(gca,'ylabel'),'FontSize', FSize);

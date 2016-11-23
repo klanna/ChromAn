@@ -1,7 +1,7 @@
 function AnalyseMotifs( DataFileIn )
     fprintf('AnalyseMotifs\n');
     
-    fpath = regexprep(pwd, 'FellerCol/.*', 'FellerCol/');
+    fpath = regexprep(pwd, 'ChromAn/.*', 'ChromAn/');
     
     [ dataCellLines, timepoints, MotifsNames, CellLineNames ] = ReadDataFromCSV( DataFileIn ); % load data in matlab format
     [ msCellLines, ssCellLines, mdataCellLines, sdataCellLines, dataFCellLines ] = FilterData( DataFileIn );

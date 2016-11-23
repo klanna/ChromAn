@@ -40,6 +40,7 @@ function DiagnosticPlot( ProteinNames, timepoints, data, mdata, sdata, varargin)
         set(get(gca,'xlabel'),'FontSize', FSize);
         set(get(gca,'ylabel'),'FontSize', FSize);
         set(get(gca,'title'),'FontSize', FSize, 'FontWeight', 'Bold');
+        axis square
         
         set(gca,'XTick', t, 'XTickLabel', arrayfun(@num2str, timepoints, 'UniformOutput', false), 'FontSize', FSize)
     end

@@ -1,4 +1,4 @@
-function [ dist_l1, dist_l2, ProcedureName ] = TryClusteringProcedures( DataFilePlotOut, Nclusters, ms )
+function [ score, dist_l2, ProcedureName ] = TryClusteringProcedures( DataFilePlotOut, Nclusters, ms )
 % performs different ways of clustering
 % Nclusters = maximal number of clusters
 % ms data to cluster
@@ -6,17 +6,20 @@ function [ dist_l1, dist_l2, ProcedureName ] = TryClusteringProcedures( DataFile
     ProcedureName = {'kmeans', 'dtw_kmeans', 'dtw_kmeansC'};
     
     for k = 1:Nclusters
-        [~, C, r] = kmeans(dd,k);
+        [idx, C, r] = kmeans(dd,k);
         dist_l1(k, 1) = sum(r);
         dist_l2(k, 1) = sum(r.^2);
-
-        [~, distances] = dtw_kmeans(dd, k);
+        score(k, 1) = ClusterScore(idx);
+        
+        [idx, distances] = dtw_kmeans(dd, k);
         dist_l1(k, 2) = sum(distances);
         dist_l2(k, 2) = sum(distances .^2);
-
+        score(k, 2) = ClusterScore(idx);
+        
         [~, distances] = dtw_kmeans(dd, k, C);
         dist_l1(k, 3) = sum(distances);
         dist_l2(k, 3) = sum(distances .^2);
+        score(k, 3) = ClusterScore(idx);
     end
     
     for i = 1:length(ProcedureName)
@@ -26,4 +29,5 @@ function [ dist_l1, dist_l2, ProcedureName ] = TryClusteringProcedures( DataFile
     DistanceMeasurePlot( d, {'l1', 'l2'}, ProcedureName, DataFilePlotOut);
     
 end
+
 

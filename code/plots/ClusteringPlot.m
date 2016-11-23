@@ -13,8 +13,16 @@ function ClusteringPlot( ProteinNames, timepoints, data, clusteridx, varargin)
     MarkerSize = 1;
     lwidth = 2;
     
-    s = SubplotDimSelection(Nc);
+    s(1) = ceil(Nc / 2);
+    s(2) = 2;
+%     s = SubplotDimSelection(Nc);
     t = 1:length(timepoints);
+    
+    x1 = min(t);
+    x2 = max(t);
+    
+    y1 = min(min(data));
+    y2 = max(max(data));
     
     for i = 1:Nc
         subplot(s(1), s(2), i)
@@ -29,13 +37,15 @@ function ClusteringPlot( ProteinNames, timepoints, data, clusteridx, varargin)
 
         title(sprintf('cluster %u', i),'interpreter','none')
         xlabel('time, h')
-        xlim([min(t) max(t)])
+        xlim([x1 x2])
+        ylim([y1 y2])
+        axis square
         
         set(get(gca,'xlabel'),'FontSize', FSize);
         set(get(gca,'ylabel'),'FontSize', FSize);
         set(get(gca,'title'),'FontSize', FSize, 'FontWeight', 'Bold');
         
-        legend(ProteinNames(idx),'interpreter','none', 'location', 'bestoutside')
+        legend(ProteinNames(idx),'interpreter','none', 'location', 'southoutside')
         
         set(gca,'XTick', t, 'XTickLabel', arrayfun(@num2str, timepoints, 'UniformOutput', false), 'FontSize', FSize)
     end
@@ -43,7 +53,7 @@ function ClusteringPlot( ProteinNames, timepoints, data, clusteridx, varargin)
     if ~isempty(varargin)
         fname = varargin{1};
         size1 = 40;
-        PDFprint(sprintf('%s', fname),  fig, size1, size1/4);
+        PDFprint(sprintf('%s', fname),  fig, size1, size1*s(1)/2);
     end
 end
 

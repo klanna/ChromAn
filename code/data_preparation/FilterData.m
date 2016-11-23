@@ -3,12 +3,18 @@ function [ ms, ss, mdata, sdata, dataF ] = FilterData( DataFileIn )
 % OUTPUT:
 % data = [time, histone, replicate]
     fprintf('---------Filter data---------\n');
-    fpath = regexprep(pwd, 'FellerCol/.*', 'FellerCol/');
-    FolderName = sprintf('%s/data/%s', fpath, DataFileIn);
-    FileOut = sprintf('%s/dataset_filtered.mat', FolderName);    
+    fpath = regexprep(pwd, 'ChromAn/.*', 'ChromAn/');
     
-%     if ~exist(FileOut, 'file')
-        
+    FolderNameOut = sprintf('%s/plots/%s', fpath, DataFileIn);    
+    FileOut = sprintf('%s/dataset_filtered.mat', FolderNameOut);    
+    
+    if exist(FolderNameOut, 'dir')
+        rmdir(FolderNameOut, 's')
+    end
+    
+    mkdir(FolderNameOut)
+    
+    if ~exist(FileOut, 'file')
         [ dataCellLines, timepoints, MotifsNames, CellLineNames ] = ReadDataFromCSV( DataFileIn ); % load data in matlab format
 
         for i = 1:length(CellLineNames)
@@ -41,8 +47,8 @@ function [ ms, ss, mdata, sdata, dataF ] = FilterData( DataFileIn )
         end
         
         save(FileOut, 'dataF', 'ms', 'ss', 'mdata', 'sdata')
-%     else
-%         load(FileOut)
-%     end
+    else
+        load(FileOut)
+    end
 end
 

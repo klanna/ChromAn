@@ -5,9 +5,11 @@ function [ data, timepoints, MotifsNames, CellLineNames ] = ReadDataFromCSV( Mod
      
     fpath = regexprep(pwd, 'FellerCol/.*', 'FellerCol/');
     FolderName = sprintf('%s/data/%s', fpath, ModelName);
-    FileOut = sprintf('%s/dataset.mat', FolderName);    
-%     if ~exist(FileOut, 'file')
-        
+    FolderNameOut = sprintf('%s/plots/%s', fpath, ModelName);
+    
+    FileOut = sprintf('%s/dataset.mat', FolderNameOut);    
+    
+    if ~exist(FileOut, 'file')        
         listing = dir(FolderName);
         ListOfFileNames = {listing.name};
         CellLineNames = {};
@@ -42,8 +44,8 @@ function [ data, timepoints, MotifsNames, CellLineNames ] = ReadDataFromCSV( Mod
             end
         end
         save(FileOut, 'data', 'timepoints', 'MotifsNames', 'CellLineNames')
-%     else
-%         load(FileOut)
-%     end
+    else
+        load(FileOut)
+    end
 end
 
