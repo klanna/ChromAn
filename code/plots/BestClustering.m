@@ -10,7 +10,7 @@ function BestClustering( ProteinNames, DataFilePlotOut, k, timepoints, ms )
     
     [dtw_clusteridx, ~] = dtw_kmeans(dd, k);
     c = ClusterScore(dtw_clusteridx);
-    if c < 3
+    if c < 4
         ClusteringPlot( ProteinNames, timepoints, ms, dtw_clusteridx, sprintf('%s_dtw_kmeans_%u', DataFilePlotOut, k));
     end
     

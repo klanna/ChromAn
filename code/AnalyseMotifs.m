@@ -3,8 +3,11 @@ function AnalyseMotifs( DataFileIn )
     
     fpath = regexprep(pwd, 'ChromAn/.*', 'ChromAn/');
     
-    [ dataCellLines, timepoints, MotifsNames, CellLineNames ] = ReadDataFromCSV( DataFileIn ); % load data in matlab format
-    [ msCellLines, ssCellLines, mdataCellLines, sdataCellLines, dataFCellLines ] = FilterData( DataFileIn );
+    FolderNameOut = sprintf('%s/plots/%s', fpath, DataFileIn);    
+
+    load(sprintf('%s/dataset_filtered.mat', FolderNameOut))
+    load(sprintf('%s/dataset.mat', FolderNameOut));
+    msCellLines = ms;
     
     [N_t, N_motifs, N_celllines] = size(msCellLines);
     
@@ -14,7 +17,7 @@ function AnalyseMotifs( DataFileIn )
     end
     
     DataFilePlot = sprintf('%s/%s_motifs', DataFolderPlot, DataFileIn);
-    DiagnosticPlotMotifs( MotifsNames, timepoints, msCellLines, CellLineNames, sprintf('%s', DataFilePlot));
+    DiagnosticPlotMotifs( MotifsNames, timepoints, ms, CellLineNames, sprintf('%s', DataFilePlot));
     
     DataFolderPlot = sprintf('%s/plots/%s/cluster_motifs/', fpath, DataFileIn);
     if ~exist(DataFolderPlot, 'dir')

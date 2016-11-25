@@ -31,7 +31,7 @@ function PerformClustering( DataFileIn )
             k0 = max(5, DefineNumberOfClusters(l2dist(:, cline)));
             for j = -1:1
                 k = k0+j;
-                if (k < 9) && (score(k, imethod) < 4)
+                if (k < 9)
                     BestClustering( MotifsNames, sprintf('%s/CLUSTERED_%s', DataFolderPlot, DataFileOut), k, timepoints, squeeze(ms(:, :, imethod)) );
                 end
             end
