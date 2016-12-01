@@ -1,5 +1,5 @@
-function ClusteringPlot( ProteinNames, timepoints, data, h, p, clusteridx, legendflag, varargin)
-    figname = 'Clustering';
+function ClusteringPlotHist( ProteinNames, timepoints, data, clusteridx, legendflag, varargin)
+    figname = 'ClusteringHist';
     Nc = max(clusteridx);
     
     if ~isempty(varargin)
@@ -27,27 +27,20 @@ function ClusteringPlot( ProteinNames, timepoints, data, h, p, clusteridx, legen
     for i = 1:Nc
         subplot(s(1), s(2), i)
         idx = find(clusteridx == i);
-        m = data(:, idx);        
+        m = data(:, idx);
+        hh = reshape(diff(m), [], 1);
+        [h,p] = kstest(hh);
         
-        plot(t, m, 'MarkerSize', MarkerSize, 'LineWidth', lwidth)
-        
-        hold on
-        
-        plot(t, mean(m, 2), ':black', 'MarkerSize', 1, 'LineWidth', lwidth*2)
+        hist(hh)
+        hold on        
 
-%         title(sprintf('cluster %u (h = %u, p = %.1e)', i, h(i), p(i)),'interpreter','none')
-        title(sprintf('cluster %u', i ),'interpreter','none')
-        xlabel('time, h')
-        xlim([x1 x2])
-        ylim([y1 y2])
+        title(sprintf('cluster %u (h = %u)', i, h),'interpreter','none')
         axis square
         
         set(get(gca,'xlabel'),'FontSize', FSize);
         set(get(gca,'ylabel'),'FontSize', FSize);
         set(get(gca,'title'),'FontSize', FSize, 'FontWeight', 'Bold');
-        if strcmp(legendflag, 'on')
-            legend(ProteinNames(idx),'interpreter','none', 'location', 'southoutside')
-        end
+
         set(gca,'XTick', t, 'XTickLabel', arrayfun(@num2str, timepoints, 'UniformOutput', false), 'FontSize', FSize)
     end
     

@@ -1,7 +1,7 @@
-function [ mdata, sdata, dataI] = InterpolateData( data, varargin)
+function [ mdata, sdata, dataI ] = InterpolateData( data, varargin)
 % get rid of dropouts for particular replicates and estimate moments
 % ScaleFactor = varargin (default = 2). Remove ouliers by this factor
-    data(data == -1) = 0;
+    data(data < 0) = 0;
     dataI = data;
     
     if ~isempty(varargin)

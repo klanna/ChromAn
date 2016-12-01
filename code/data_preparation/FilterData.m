@@ -27,6 +27,8 @@ function [ ms, ss, mdata, sdata, dataF ] = FilterData( DataFileIn )
 
             data = squeeze(dataCellLines(:, :, :, i));
             [ mdatai, sdatai, dataI] = InterpolateData( data );
+            [ dataS ] = ScaleTS0( data ); %scale time series for clustering
+            [ msi, ssi, dataIs] = InterpolateData( dataS );
 
             %% plot diagnostic plot for the data
             DiagnosticPlot( MotifsNames, timepoints, dataI, mdatai, sdatai, sprintf('%s_filtered', DataFilePlot));
@@ -36,17 +38,18 @@ function [ ms, ss, mdata, sdata, dataF ] = FilterData( DataFileIn )
             DataFileOut = sprintf('%s_X_scale0tp', DataFileIn);
             DataFilePlotOut = sprintf('%s/%s', DataFolderPlot, DataFileOut);
 
-            [ msi, ssi ] = ScaleTS0( mdatai, sdatai ); %scale time series for clustering
             DiagnosticPlotNormalized( MotifsNames, timepoints, [], msi, ssi, sprintf('%s_scaled', DataFilePlotOut));
             
             mdata(:, :, i) = mdatai;
             sdata(:, :, i) = sdatai;
             ms(:, :, i) = msi;
             ss(:, :, i) = ssi;
+            dataRaw(:, :, :, i) = dataS;
             dataF(:, :, :, i) = dataI;
+            dataFs(:, :, :, i) = dataIs;
         end
         
-        save(FileOut, 'dataF', 'ms', 'ss', 'mdata', 'sdata')
+        save(FileOut, 'dataF', 'ms', 'ss', 'mdata', 'sdata', 'dataFs', 'dataRaw')
     else
         load(FileOut)
     end

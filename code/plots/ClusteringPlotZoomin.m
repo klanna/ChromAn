@@ -1,5 +1,5 @@
-function ClusteringPlot( ProteinNames, timepoints, data, h, p, clusteridx, legendflag, varargin)
-    figname = 'Clustering';
+function ClusteringPlotZoomin( ProteinNames, timepoints, data, h, p, clusteridx, legendflag, varargin)
+    figname = 'ClusteringPlotZoomin';
     Nc = max(clusteridx);
     
     if ~isempty(varargin)
@@ -34,12 +34,15 @@ function ClusteringPlot( ProteinNames, timepoints, data, h, p, clusteridx, legen
         hold on
         
         plot(t, mean(m, 2), ':black', 'MarkerSize', 1, 'LineWidth', lwidth*2)
-
+        
+        hold on
+        plot([x1 x2] , [1 1], 'color', 192*[1 1 1]/255, 'MarkerSize', 1, 'LineWidth', 1)
+        
 %         title(sprintf('cluster %u (h = %u, p = %.1e)', i, h(i), p(i)),'interpreter','none')
         title(sprintf('cluster %u', i ),'interpreter','none')
         xlabel('time, h')
         xlim([x1 x2])
-        ylim([y1 y2])
+%         ylim([y1 y2])
         axis square
         
         set(get(gca,'xlabel'),'FontSize', FSize);

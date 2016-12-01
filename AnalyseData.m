@@ -5,6 +5,7 @@ Start
 DataFileIn = 'Dataset_MG20161118'; % name of the folder with data
 
 FilterData( DataFileIn ); % including making diagnostic plots
+% AnalyseTrend( DataFileIn );
 
 PerformClustering( DataFileIn ); % analyse cell-lines individually
 

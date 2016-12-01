@@ -1,13 +1,12 @@
-function [ ms, ss ] = ScaleTS0( m, s )
+function [ dataIs ] = ScaleTS0( m )
 % scale data on the value at zero time point
-    [Nt, N] = size(m);
-    for i = 1:N
-        w = abs(m(1, i));
-        if ~w
-            w = 1;
+    [Nt, Nhi, N] = size(m);
+    dataIs = m;
+    for hi = 1:Nhi
+        for i = 1:N
+            w = abs(squeeze(m(1, hi, i)));
+            dataIs(:, hi, i) = squeeze(m(:, hi, i)) / w;
         end
-        ms(:, i) = m(:, i) / w;
-        ss(:, i) = s(:, i) / w;
     end
 end
 
