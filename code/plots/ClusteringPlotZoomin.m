@@ -56,8 +56,8 @@ function ClusteringPlotZoomin( ProteinNames, timepoints, data, h, p, clusteridx,
     
     if ~isempty(varargin)
         fname = varargin{1};
-        size1 = 40;
-        PDFprint(sprintf('%s_%s_%s', fname, figname, legendflag),  fig, size1, size1*s(1)/2);
+        size1 = 60;
+        PDFprint(sprintf('%s_%s_%s', fname, figname, legendflag),  fig, size1, size1);
     end
 end
 

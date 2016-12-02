@@ -33,7 +33,7 @@ function DiagnosticPlotNormalized( ProteinNames, timepoints, data, mdata, sdata,
         title(ProteinNames{i},'interpreter','none')
         xlabel('time, h')
         xlim([min(t) max(t)])
-        if isempty(data)
+        if isempty(data) && ~isempty(mdata)
             ylim([min(min(mdata)) max(max(mdata))])
         end
         axis square

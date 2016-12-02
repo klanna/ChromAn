@@ -32,7 +32,7 @@ function PerformClustering( DataFileIn )
             for j = -1:1
                 k = k0+j;
                 if (k < 9)
-                    BestClustering( MotifsNames, sprintf('%s/CLUSTERED_%s', DataFolderPlot, DataFileOut), k, timepoints, squeeze(ms(:, :, cline)), squeeze(dataRaw(:, :, :, cline)) );
+                    BestClustering( MotifsNames, sprintf('%s/CLUSTERED_%s', DataFolderPlot, DataFileOut), k, timepoints, squeeze(ms(:, :, cline)), dataRaw{cline} );
                 end
             end
         end

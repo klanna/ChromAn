@@ -54,7 +54,7 @@ function ClusteringPlot( ProteinNames, timepoints, data, h, p, clusteridx, legen
     if ~isempty(varargin)
         fname = varargin{1};
         size1 = 40;
-        PDFprint(sprintf('%s_%s_%s', fname, figname, legendflag),  fig, size1, size1*s(1)/2);
+        PDFprint(sprintf('%s_%s_%s', fname, figname, legendflag),  fig, size1, size1);
     end
 end
 

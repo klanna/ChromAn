@@ -11,6 +11,7 @@ function BestClustering( ProteinNames, DataFilePlotOut, k, timepoints, ms, dataR
         ClusteringPlotZoomin( ProteinNames, timepoints, ms, h, p, clusteridx, 'on', sprintf('%s_kmeans_%u', DataFilePlotOut, k ));
         ClusteringPlotZoomin( ProteinNames, timepoints, ms, h, p, clusteridx, 'off', sprintf('%s_kmeans_%u', DataFilePlotOut, k ));
         
+        save(sprintf('%s_kmeans_%u', DataFilePlotOut, k ), 'clusteridx')
 %         ClusteringPlotHist( ProteinNames, timepoints, ms, clusteridx, 'off', sprintf('%s_kmeans_%u', DataFilePlotOut, k ));
     end
     
@@ -25,6 +26,7 @@ function BestClustering( ProteinNames, DataFilePlotOut, k, timepoints, ms, dataR
         ClusteringPlotZoomin( ProteinNames, timepoints, ms, h, p, dtw_clusteridx, 'on', sprintf('%s_dtw_kmeans_%u', DataFilePlotOut, k));
         ClusteringPlotZoomin( ProteinNames, timepoints, ms, h, p, dtw_clusteridx, 'off', sprintf('%s_dtw_kmeans_%u', DataFilePlotOut, k));
         
+        save(sprintf('%s_dtw_kmeans_%u', DataFilePlotOut, k ), 'clusteridx')
 %         ClusteringPlotHist( ProteinNames, timepoints, ms, dtw_clusteridx, 'off', sprintf('%s_dtw_kmeans_%u', DataFilePlotOut, k));
     end
     
@@ -39,6 +41,7 @@ function BestClustering( ProteinNames, DataFilePlotOut, k, timepoints, ms, dataR
         ClusteringPlotZoomin( ProteinNames, timepoints, ms, h, p, dtwK_clusteridx, 'on', sprintf('%s_dtwK_kmeans_%u', DataFilePlotOut, k) );
         ClusteringPlotZoomin( ProteinNames, timepoints, ms, h, p, dtwK_clusteridx, 'off', sprintf('%s_dtwK_kmeans_%u', DataFilePlotOut, k));
         
+        save(sprintf('%s_dtwK_kmeans_%u', DataFilePlotOut, k ), 'clusteridx')
 %         ClusteringPlotHist( ProteinNames, timepoints, ms, dtwK_clusteridx, 'off', sprintf('%s_dtwK_kmeans_%u', DataFilePlotOut, k));
 
     end

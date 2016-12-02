@@ -1,7 +1,7 @@
 function [ data, timepoints, MotifsNames, CellLineNames ] = ReadDataFromCSV( ModelName )
 % reads data from csv-files in one folder
 % OUTPUT:
-% data = [time, histone, replicate]
+% data = [time, histone, replicate, cell-line]
      
     fpath = regexprep(pwd, 'FellerCol/.*', 'FellerCol/');
     FolderName = sprintf('%s/data/%s', fpath, ModelName);

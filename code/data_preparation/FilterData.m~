@@ -29,8 +29,8 @@ function [ ms, ss, mdata, sdata, dataF ] = FilterData( DataFileIn )
             repl = [];
             for rep = 1:size(data, 3)
                 xx = squeeze(data(:, :, rep));
-                if all(all(xx)) == 0
-                    repl(end+1) = rep;
+                if all(xx)
+                    repl()
                 end
             end
             data(:, :, repl) = [];
