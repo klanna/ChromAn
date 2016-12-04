@@ -35,8 +35,8 @@ function ClusteringPlot( ProteinNames, timepoints, data, h, p, clusteridx, legen
         
         plot(t, mean(m, 2), ':black', 'MarkerSize', 1, 'LineWidth', lwidth*2)
 
-%         title(sprintf('cluster %u (h = %u, p = %.1e)', i, h(i), p(i)),'interpreter','none')
-        title(sprintf('cluster %u', i ),'interpreter','none')
+        title(sprintf('cluster %u (h = %u, p = %.1e)', i, h(i), p(i)),'interpreter','none')
+%         title(sprintf('cluster %u', i ),'interpreter','none')
         xlabel('time, h')
         xlim([x1 x2])
         ylim([y1 y2])

@@ -38,8 +38,8 @@ function ClusteringPlotZoomin( ProteinNames, timepoints, data, h, p, clusteridx,
         hold on
         plot([x1 x2] , [1 1], 'color', 192*[1 1 1]/255, 'MarkerSize', 1, 'LineWidth', 1)
         
-%         title(sprintf('cluster %u (h = %u, p = %.1e)', i, h(i), p(i)),'interpreter','none')
-        title(sprintf('cluster %u', i ),'interpreter','none')
+        title(sprintf('cluster %u (h = %u, p = %.1e)', i, h(i), p(i)),'interpreter','none')
+%         title(sprintf('cluster %u', i ),'interpreter','none')
         xlabel('time, h')
         xlim([x1 x2])
 %         ylim([y1 y2])
